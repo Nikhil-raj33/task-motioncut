@@ -1,12 +1,12 @@
-// Get the task input field, add task button, and task list
+
 const taskInput = document.getElementById('task-input');
 const addTaskBtn = document.getElementById('add-task-btn');
 const taskList = document.getElementById('task-list');
 
-// Load tasks from local storage
+
 let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
-// Function to render tasks
+
 function renderTasks() {
     taskList.innerHTML = '';
     tasks.forEach((task, index) => {
@@ -20,7 +20,7 @@ function renderTasks() {
         `;
         taskList.appendChild(taskItem);
 
-        // Edit task event listener
+
         taskItem.querySelector('.edit-btn').addEventListener('click', () => {
             const taskText = prompt('Edit task:', task.text);
             if (taskText) {
@@ -30,14 +30,12 @@ function renderTasks() {
             }
         });
 
-        // Delete task event listener
         taskItem.querySelector('.delete-btn').addEventListener('click', () => {
             tasks.splice(index, 1);
             localStorage.setItem('tasks', JSON.stringify(tasks));
             renderTasks();
         });
 
-        // Complete task event listener
         taskItem.querySelector('.complete-btn').addEventListener('click', () => {
             tasks[index].completed = !tasks[index].completed;
             localStorage.setItem('tasks', JSON.stringify(tasks));
@@ -46,7 +44,7 @@ function renderTasks() {
     });
 }
 
-// Add task event listener
+
 addTaskBtn.addEventListener('click', () => {
     const taskText = taskInput.value.trim();
     if (taskText) {
